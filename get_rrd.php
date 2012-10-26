@@ -4,6 +4,7 @@ $file = '/tmp/if_octets.rrd';
 
 $opts = array ( "AVERAGE", "--start", '-1d');
 $rrd = rrd_fetch($file, $opts);
+$rrd_info = rrd_info($file);
 
 function remove_nan(&$item, $key) {
   if(is_nan($item)) { $item = null; }

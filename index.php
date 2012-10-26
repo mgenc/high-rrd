@@ -28,7 +28,7 @@
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container">
+        <div class="container-fluid">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -44,9 +44,17 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
 
-      <div id="chart1"></div>
+      <div class="row-fluid">
+        <div id="chart1" class="span6" style="height:400px;"></div>
+        <div id="chart2" class="span6" style="height:400px;"></div>
+      </div>
+
+      <div class="row-fluid">
+        <div id="chart3" class="span6" style="height:400px;"></div>
+        <div id="chart4" class="span6" style="height:400px;"></div>
+      </div>
 
     </div> <!-- /container -->
 

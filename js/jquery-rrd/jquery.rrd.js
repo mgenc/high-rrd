@@ -21,7 +21,12 @@
       },
       yAxis: {
         title: {
-          text: 'bit/s'
+          text: ''
+        }
+      },
+      plotOptions: {
+        series: {
+          animation: false
         }
       },
       series: []
