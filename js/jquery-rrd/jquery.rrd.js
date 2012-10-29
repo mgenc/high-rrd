@@ -41,6 +41,9 @@
         var RRD_start = rrd_file.start * 1000;
         var RRD_interval = rrd_file.step * 1000;
 
+        pattern = /(.*)\.rrd$/;
+        rrd_name = pattern.exec(rrd_name);
+
         $.each(rrd_file.data, function(serie_name, serie_data) {
 
           $.each(serie_data, function(key, val) {
@@ -48,9 +51,9 @@
           });
 
           if (serie_name=='value') {
-            serie_name = rrd_name;
+            serie_name = rrd_name[1];
           } else {
-            serie_name = rrd_name + '/' + serie_name;
+            serie_name = rrd_name[1] + '/' + serie_name;
           }
 
           new_serie = {
