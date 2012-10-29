@@ -19,9 +19,6 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
   </head>
 
   <body>
@@ -47,13 +44,18 @@
     <div class="container-fluid">
 
       <div class="row-fluid">
-        <div id="chart1" class="span6" style="height:400px;"></div>
-        <div id="chart2" class="span6" style="height:400px;"></div>
+        <div id="selector">
+          <select id="hosts">
+            <option value="none">Select host</option>
+          </select>
+          <select id="plugins">
+            <option value="all">All plugins</option>
+          </select>
+          <button id="btn_display" class="btn btn-success" type="button">Display</button>
+        </div>
       </div>
 
-      <div class="row-fluid">
-        <div id="chart3" class="span6" style="height:400px;"></div>
-        <div id="chart4" class="span6" style="height:400px;"></div>
+      <div id="charts" class="row-fluid">
       </div>
 
     </div> <!-- /container -->

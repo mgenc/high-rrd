@@ -1,7 +1,7 @@
 (function($) {
 
   //Define rrdChart plugin
-  $.fn.rrdChart = function() {
+  $.fn.rrdChart = function(host, plugin) {
 
     var div = $(this).attr('id');
 
@@ -11,7 +11,7 @@
         type: 'line'
       },
       title: {
-        text: 'Network Traffic'
+        text: host + ' / ' + plugin
       },
       tooltip: {
         enabled: false
@@ -32,33 +32,43 @@
       series: []
     };
 
-    $.getJSON('get_rrd.php', function(data) {
+    $.getJSON('get_rrd.php?host='+host+'&plugin='+plugin, function(data) {
 
       var datas = new Array();
 
-      var RRD_start = data.start * 1000;
-      var RRD_interval = data.step * 1000;
+      $.each(data, function(rrd_name, rrd_file) {
 
-      $.each(data.data, function(key, val) {
+        var RRD_start = rrd_file.start * 1000;
+        var RRD_interval = rrd_file.step * 1000;
 
-        $.each(val, function(key, val) {
-          datas.push(val);
-        });
+        $.each(rrd_file.data, function(serie_name, serie_data) {
 
-        new_serie = {
-          name: key,
-          pointInterval: RRD_interval,
-          pointStart: RRD_start,
-          lineWidth: 1,
-          marker: {
-            radius: 0
+          $.each(serie_data, function(key, val) {
+            datas.push(val);
+          });
+
+          if (serie_name=='value') {
+            serie_name = rrd_name;
+          } else {
+            serie_name = rrd_name + '/' + serie_name;
           }
-        } 
 
-        new_serie.data = datas;
-        options.series.push(new_serie);
+          new_serie = {
+            name: serie_name,
+            pointInterval: RRD_interval,
+            pointStart: RRD_start,
+            lineWidth: 1,
+            marker: {
+              radius: 0
+            }
+          } 
 
-        datas = [];
+          new_serie.data = datas;
+          options.series.push(new_serie);
+
+          datas = [];
+  
+        });
 
       });
 
