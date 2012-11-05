@@ -14,7 +14,11 @@ $(document).ready(function() {
          .attr("value",key)
          .text(key)); 
 
-    });
+    })
+
+  }).error(function() {
+
+    alert("Error while loading hosts list!");
 
   });
 
