@@ -2,6 +2,7 @@ $(document).ready(function() {
 
   var hosts;
 
+  //Get list of hosts and plugins
   $.getJSON('get_hosts.php', function(data) {
 
     hosts = data;
@@ -17,6 +18,7 @@ $(document).ready(function() {
 
   });
 
+  //Refresh plugins list on host selection
   $('#hosts').change(function() {
 
     $('#plugins')
@@ -38,7 +40,7 @@ $(document).ready(function() {
 
   });
 
-
+  //Display charts
   $('#btn_display').click(function() {
 
     $('#charts').empty();
